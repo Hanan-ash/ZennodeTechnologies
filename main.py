@@ -1,8 +1,11 @@
 # Class to represent discount rules
+
+#DiscountRule is base class for all discount rules
+#apply_discount is method that overridden in the derived classes
+
 class DiscountRule:
     def apply_discount(self, quantity, total_price):
         pass
-
 
 class FlatDiscountRule(DiscountRule):
     def __init__(self, threshold, amount):
@@ -13,7 +16,6 @@ class FlatDiscountRule(DiscountRule):
         if sum(total_price.values()) > self.threshold:
             return self.amount
         return 0
-
 
 class BulkDiscountRule(DiscountRule):
     def __init__(self, threshold, percent):
@@ -51,7 +53,7 @@ catalog = {
     "Product C": 50
 }
 
-# Discount Rules
+# instances of Discount Rules
 discount_rules = [
     FlatDiscountRule(threshold=200, amount=10),
     BulkDiscountRule(threshold=10, percent=0.05),
